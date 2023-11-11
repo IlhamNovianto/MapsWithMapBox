@@ -1,9 +1,17 @@
-import com.android.build.api.variant.BuildConfigField
+import java.io.FileInputStream
+import java.util.*
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+
 }
+
+// set SECRET API KEY from Local.Properties
+val localPropertiesFile: File = rootProject.file("local.properties")
+val localProperties = Properties()
+localProperties.load(FileInputStream(localPropertiesFile))
+
 
 android {
     namespace = "com.example.mapswithmapbox"
@@ -16,10 +24,11 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField("string", "apiKeySecret", "")
-        buildConfigField("string", "apiKeyPub", "")
+        buildConfigField("String", "API_PUBLIC",localProperties.getProperty("API_PUBLIC"))
+
+        buildConfigField("String", "API_TOKEN", localProperties.getProperty("API_SECRET"))
+
     }
     buildFeatures {
         buildConfig = true

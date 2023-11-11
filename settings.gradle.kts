@@ -1,3 +1,6 @@
+// set SECRET API KEY from Local.Properties
+val localProperties = java.util.Properties()
+file("local.properties").inputStream().use { localProperties.load(it) }
 
 
 pluginManagement {
@@ -12,19 +15,21 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven{
+         maven{
             setUrl("https://api.mapbox.com/downloads/v2/releases/maven")
             authentication {
 
             }
             credentials{
                 username = "mapbox"
-                password = "sk.eyJ1IjoiaWxoYW05NSIsImEiOiJjbG9zcG9kZGgwMm0wMmtxMDljNmdpaGgwIn0.0nE2ObpY7eyDBNCFVorTWw"
+                password = localProperties.getProperty("API_SECRET")
             }
         }
+
 
     }
 }
 
 rootProject.name = "MapsWithMapBox"
+
 include(":app")
