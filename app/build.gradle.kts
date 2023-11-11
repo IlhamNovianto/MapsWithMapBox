@@ -26,7 +26,6 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "API_PUBLIC",localProperties.getProperty("API_PUBLIC"))
-
         buildConfigField("String", "API_TOKEN", localProperties.getProperty("API_SECRET"))
 
     }
@@ -65,5 +64,10 @@ dependencies {
 
     //Mapbox
     implementation ("com.mapbox.maps:android:10.12.0")
+    //implementation ("com.mapbox.mapboxsdk:mapbox-android-core:6.1.0")
+    //Update Location by Google Service
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+
 
 }
